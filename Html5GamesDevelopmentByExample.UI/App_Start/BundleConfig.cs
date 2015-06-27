@@ -39,6 +39,11 @@ namespace Html5GamesDevelopmentByExample.UI.App_Start
                 "~/Content/ChapterThree/css/*.less"));
             bundles.Add(new ScriptBundle("~/bundles/chapterthree/js").Include(
                 "~/Content/ChapterThree/js/*.js"));
+
+            bundles.Add(new LessBundle("~/bundles/chapterfour/less").Include(
+                "~/Content/chapterfour/css/*.less"));
+            bundles.Add(new ScriptBundle("~/bundles/chapterfour/js").Include(
+                "~/Content/chapterfour/js/*.js"));
         }
     }
 }
