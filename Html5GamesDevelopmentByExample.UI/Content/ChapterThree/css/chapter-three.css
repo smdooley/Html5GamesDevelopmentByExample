@@ -80,6 +80,7 @@ textarea {
    ========================================================================== */
 body {
   background: #a46740 url(../img/bg.jpg);
+  font-family: 'Droid Serif', Arial, serif;
   text-align: center;
 }
 #game {

@@ -45,10 +45,22 @@ function isMatchPattern() {
 
 function removeTookCards() {
     $('.card-removed').remove();
+    gameOver();
+}
+
+function gameOver() {
+    var cards = $('#cards').children('.card').length;
+    if (cards === 0) {
+        $('<h4></h4>', {
+            'class': 'alert alert-success',
+            'text': 'You Won!'
+        })
+        .appendTo('body');
+    }
 }
 
 $(function () {
-    
+
     // shuffle the deck
     matchingGame.deck.sort(shuffle);
 
