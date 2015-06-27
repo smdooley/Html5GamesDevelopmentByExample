@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Chapter Two";
+    ViewBag.Header = "Ping Pong Tutorial";
+}
+
+@section styles {
+    @Styles.Render("~/bundles/chaptertwo/less")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chaptertwo/js")
+}
+
+<div id="scoreboard">
+    <div class="score">Player A: <span id="scoreA">0</span></div>
+    <div class="score">Player B: <span id="scoreB">0</span></div>
+</div>
+<div id="game">
+    <div id="playground">
+        <div id="paddleA" class="paddle"></div>
+        <div id="paddleB" class="paddle"></div>
+        <div id="ball"></div>
+    </div>
+</div>
+<div id="gameover">
+    <div class="message"></div>
+</div>
