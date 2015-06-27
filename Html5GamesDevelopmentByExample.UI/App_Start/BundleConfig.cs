@@ -35,10 +35,10 @@ namespace Html5GamesDevelopmentByExample.UI.App_Start
             bundles.Add(new ScriptBundle("~/bundles/chaptertwo/js").Include(
                 "~/Content/ChapterTwo/js/*.js"));
 
-            //bundles.Add(new LessBundle("~/bundles/chapterthree/less").Include(
-            //    "~/Content/ChapterThree/css/*.less"));
-            //bundles.Add(new ScriptBundle("~/bundles/chapterthree/js").Include(
-            //    "~/Content/ChapterThree/js/*.js"));
+            bundles.Add(new LessBundle("~/bundles/chapterthree/less").Include(
+                "~/Content/ChapterThree/css/*.less"));
+            bundles.Add(new ScriptBundle("~/bundles/chapterthree/js").Include(
+                "~/Content/ChapterThree/js/*.js"));
         }
     }
 }

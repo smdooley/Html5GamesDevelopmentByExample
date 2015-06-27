@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Chapter Three - HTML5 Game Development";
+    ViewBag.Header = "CSS3 Matching Game";
+}
+
+@section styles {
+    @Styles.Render("~/bundles/chapterthree/less")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chapterthree/js")
+}
+
+<section id="game">
+    <div id="cards">
+        <div class="card">
+            <div class="face front"></div>
+            <div class="face back"></div>
+        </div>
+    </div>
+</section>

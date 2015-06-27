@@ -110,6 +110,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ChapterThree\css\chapter-three.css">
+      <DependentUpon>chapter-three.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterThree\css\chapter-three.min.css">
+      <DependentUpon>chapter-three.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterThree\img\AK.png" />
+    <Content Include="Content\ChapterThree\img\AQ.png" />
+    <Content Include="Content\ChapterThree\img\bg.jpg" />
+    <Content Include="Content\ChapterThree\img\deck.png" />
+    <Content Include="Content\ChapterThree\img\table.jpg" />
+    <Content Include="Content\ChapterThree\js\main.js" />
     <Content Include="Content\ChapterTwo\css\chapter-two.css">
       <DependentUpon>chapter-two.less</DependentUpon>
     </Content>
@@ -130,7 +142,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\modernizr-2.6.2.min.js" />
-    <Content Include="Content\ChapterTwo\js\pingpong.js" />
+    <Content Include="Content\ChapterTwo\js\main.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -163,6 +175,11 @@
     <Content Include="Content\ChapterTwo\css\chapter-two.css.map">
       <DependentUpon>chapter-two.css</DependentUpon>
     </Content>
+    <Content Include="Content\ChapterThree\css\chapter-three.less" />
+    <Content Include="Content\ChapterThree\css\chapter-three.css.map">
+      <DependentUpon>chapter-three.css</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\ChapterThree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
