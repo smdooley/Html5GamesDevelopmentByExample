@@ -220,9 +220,6 @@ function checkLevelCompleteness() {
 }
 
 function updateLevelProgress() {
-
-    console.log('updateLevelProgress');
-
     // check the untangle level progress
     var progress = 0;
     for (var i = 0; i < untangleGame.lines.length; i++) {
