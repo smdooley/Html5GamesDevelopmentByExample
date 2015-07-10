@@ -128,6 +128,36 @@ header {
     text-shadow: 0 1px 0 rgba(200,200,200,.5);
 }
 
+#layers {
+    height: 440px;
+    position: relative;
+    margin: 0 auto;
+    width: 768px;
+}
+
+#layers canvas {
+    left: 50%;
+    margin-left: -384px;
+    position: absolute;
+}
+
+#guide {
+    opacity: 0.7;
+}
+
+#guide.fadeout {
+    opacity: 0;
+    transition: opacity linear .5s;
+}
+
+#ui {
+    transition: opacity linear .3s;
+}
+
+#ui.dim {
+    opacity: .3;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -144,12 +174,12 @@ header {
     *text-indent: -9999px;
 }
 
-    .ir:before {
-        content: "";
-        display: block;
-        width: 0;
-        height: 150%;
-    }
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
 
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
@@ -175,20 +205,20 @@ header {
     width: 1px;
 }
 
-    /*
+/*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
 
-    .visuallyhidden.focusable:active,
-    .visuallyhidden.focusable:focus {
-        clip: auto;
-        height: auto;
-        margin: 0;
-        overflow: visible;
-        position: static;
-        width: auto;
-    }
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
 
 /*
  * Hide visually and from screenreaders, but maintain layout
@@ -261,9 +291,9 @@ header {
         text-decoration: underline;
     }
 
-        a[href]:after {
-            content: " (" attr(href) ")";
-        }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
 
     abbr[title]:after {
         content: " (" attr(title) ")";

@@ -3,6 +3,7 @@ var untangleGame = {
     thinLineThickness: 1,
     boldLineThickness: 5,
     circleRadius: 10,
+    layers: [],
     lines: [],
     currentLevel: 0,
     progressPercentage: 0,
@@ -117,48 +118,89 @@ function connectCircles() {
 }
 
 function gameloop() {
-    // get the reference of the canvas element and the drawing context.
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
+    drawLayerGuide();
+    drawLayerGame();
+    drawLayerUI();
+}
 
-    // clear the canvas before re-drawing.
+function drawLayerBg() {
+    var ctx = untangleGame.layers[0];
+
     clear(ctx);
 
     // draw the image background
     ctx.drawImage(untangleGame.background, 0, 0);
+}
 
-    // draw the guide animation
-    if (untangleGame.currentLevel === 0 && untangleGame.guideReady) {
-        // frame dimensions are 80x130
-        var x = untangleGame.guideFrame * 80;
-        ctx.drawImage(untangleGame.guide, x, 0, 80, 130, 325, 130, 80, 130);
+function drawLayerGuide() {
+    var ctx = untangleGame.layers[1];
+
+    clear(ctx);
+
+    // draw guide animation
+    if (untangleGame.guideReady) {
+        // dimension of each frame is 80x130
+        var nextFrameX = untangleGame.guideFrame * 80;
+        ctx.drawImage(untangleGame.guide, nextFrameX, 0, 80, 130, 325, 130, 80, 120);
     }
 
-    // draw all remembered line
+    // fade out the guideline after level 0
+    if (untangleGame.currentLevel === 1) {
+        $('#guide').addClass('fadeout');
+    }
+}
+
+function drawLayerGame() {
+    var ctx = untangleGame.layers[2];
+
+    clear(ctx);
+
+    // draw the game state visually
+    
+    // draw all the remembered lines
     for (var i = 0; i < untangleGame.lines.length; i++) {
         var line = untangleGame.lines[i];
         var startPoint = line.startPoint;
         var endPoint = line.endPoint;
         var thickness = line.thickness;
+
         drawLine(ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
     }
 
-    // draw all remembered circles
+    // draw all the remembered circles
     for (var i = 0; i < untangleGame.circles.length; i++) {
         var circle = untangleGame.circles[i];
+
         drawCircle(ctx, circle.x, circle.y, circle.radius);
     }
+}
 
-    // draw the title text
-    ctx.font = "26px 'Rock Salt'";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#fff";
-    //ctx.fillText("Untangle Game", ctx.canvas.width / 2, 100);
+function drawLayerUI() {
+    var ctx = untangleGame.layers[3];
+
+    clear(ctx);
 
     // draw the level progress text
+    ctx.font = "26px 'Rock Salt'";
+    ctx.fillStyle = "#ddd";
     ctx.textAlign = "left";
     ctx.textBaseline = "bottom";
-    ctx.fillText("Puzzle " + untangleGame.currentLevel + ", Completeness: " + untangleGame.progressPercentage + "%", 50, ctx.canvas.height - 50);
+    ctx.fillText("Puzzle " + untangleGame.currentLevel + ", Completeness: " + untangleGame.progressPercentage + "%", 60, ctx.canvas.height - 80);
+
+    // get all the circles, check if the ui overlap with the game objects
+    var isOverlappedWithCircle = false;
+    for (var circle in untangleGame.circles) {
+        var point = untangleGame.circles[circle];
+        if (point.y > 310) {
+            isOverlappedWithCircle = true;
+        }
+    }
+
+    if (isOverlappedWithCircle) {
+        $("#ui").addClass("dim");
+    } else {
+        $("#ui").removeClass("dim");
+    }
 }
 
 function isIntersect(line1, line2) {
@@ -245,7 +287,6 @@ function updateLevelProgress() {
     // check the untangle level progress
     var progress = 0;
     for (var i = 0; i < untangleGame.lines.length; i++) {
-        console.log(untangleGame.lines[i].thickness + ' === ' + untangleGame.thinLineThickness);
         if (untangleGame.lines[i].thickness === untangleGame.thinLineThickness) {
             progress++;
         }
@@ -268,15 +309,27 @@ function guideNextFrame() {
     }
 }
 
-$(function () {
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
 
-    var width = canvas.width;
-    var height = canvas.height;
+
+$(function () {
+    // prepare layer 0 (bg)
+    var canvas_bg = document.getElementById("bg");
+    untangleGame.layers[0] = canvas_bg.getContext("2d");
+
+    // prepare layer 1 (guide)
+    var canvas_guide = document.getElementById("guide");
+    untangleGame.layers[1] = canvas_guide.getContext("2d");
+
+    // prepare layer 2 (game)
+    var canvas = document.getElementById("game");
+    var ctx = canvas.getContext("2d");
+    untangleGame.layers[2] = ctx;
+
+    // prepare layer 3 (ui)
+    var canvas_ui = document.getElementById("ui");
+    untangleGame.layers[3] = canvas_ui.getContext("2d");
 
     // draw a splash screen when loading the background
-
     // draw background
     var bg_gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
     bg_gradient.addColorStop(0, '#ccc');
@@ -294,6 +347,7 @@ $(function () {
     untangleGame.background = new Image();
 
     untangleGame.background.onload = function () {
+        drawLayerBg();
         // setup an interval to loop the game loop
         setInterval(gameloop, 30);
     }
@@ -321,7 +375,7 @@ $(function () {
     // Add Mouse Event Listener to canvas
     // we find if the mouse down position is on any circle 
     // and set that circle as target dragging circle.
-    $('#game').mousedown(function (e) {
+    $('#layers').mousedown(function (e) {
         var canvasPosition = $(this).offset();
         //var mouseX = e.layerX || 0;
         //var mouseY = e.layerY || 0;
@@ -353,7 +407,7 @@ $(function () {
     });
 
     // we move the target dragging circle when the mouse is moving
-    $('#game').mousemove(function (e) {
+    $('#layers').mousemove(function (e) {
         if (untangleGame.targetCircle != undefined) {
             var canvasPosition = $(this).offset();
             var mouseX = e.offsetX === null ? e.layerX : e.offsetX; //e.layerX || 0;
@@ -369,7 +423,7 @@ $(function () {
     });
 
     // We clear the dragging circle data when mouse is up
-    $('#game').mouseup(function (e) {
+    $('#layers').mouseup(function (e) {
         untangleGame.targetCircle = undefined;
 
         // on every mouse up, check if the untangle puzzle is solved

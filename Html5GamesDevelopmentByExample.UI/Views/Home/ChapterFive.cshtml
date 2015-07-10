@@ -13,9 +13,12 @@
     @Scripts.Render("~/bundles/chapterfive/js")
 }
 
-<section id="page">
-    <canvas id="game" width="768" height="400">
-        Sorry, your web browser does not support Canvas content.
+<section id="layers">
+    <canvas id="bg" width="768" height="440">
+        Sorry, your web browser does not support canvas content.
     </canvas>
-    @*<p>Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%</p>*@
+    <canvas id="guide" width="768" height="440"></canvas>
+    <canvas id="game" width="768" height="440"></canvas>
+    <canvas id="ui" width="768" height="440"></canvas>
 </section>
+<p>Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%</p>
