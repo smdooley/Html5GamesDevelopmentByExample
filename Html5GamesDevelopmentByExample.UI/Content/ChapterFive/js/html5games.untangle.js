@@ -309,8 +309,6 @@ function guideNextFrame() {
     }
 }
 
-
-
 $(function () {
     // prepare layer 0 (bg)
     var canvas_bg = document.getElementById("bg");
@@ -377,16 +375,6 @@ $(function () {
     // and set that circle as target dragging circle.
     $('#layers').mousedown(function (e) {
         var canvasPosition = $(this).offset();
-        //var mouseX = e.layerX || 0;
-        //var mouseY = e.layerY || 0;
-
-        //if (e.layerX || e.layerX === 0) {
-        //    mouseX = e.layerX;
-        //    mouseY = e.layerY;
-        //} else {
-        //    mouseX = e.offsetX;
-        //    mouseY = e.offsetY;
-        //}
 
         var mouseX = e.offsetX === null ? e.layerX : e.offsetX;
         var mouseY = e.offsetY === null ? e.layerY : e.offsetY;
