@@ -110,6 +110,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ChapterFive\css\untangle.css">
+      <DependentUpon>untangle.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterFive\css\untangle.min.css">
+      <DependentUpon>untangle.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterFive\js\html5games.untangle.js" />
     <Content Include="Content\ChapterFour\css\untangle.css">
       <DependentUpon>untangle.less</DependentUpon>
     </Content>
@@ -172,6 +179,11 @@
       <DependentUpon>untangle.css</DependentUpon>
     </Content>
     <Content Include="Views\Home\ChapterFour.cshtml" />
+    <Content Include="Views\Home\ChapterFive.cshtml" />
+    <Content Include="Content\ChapterFive\css\untangle.less" />
+    <Content Include="Content\ChapterFive\css\untangle.css.map">
+      <DependentUpon>untangle.css</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -181,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ChapterFive\img\" />
     <Folder Include="Content\ChapterFour\img\" />
     <Folder Include="Content\ChapterTwo\img\" />
     <Folder Include="Models\" />

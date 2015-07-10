@@ -28,5 +28,10 @@ namespace Html5GamesDevelopmentByExample.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult ChapterFive()
+        {
+            return View();
+        }
     }
 }

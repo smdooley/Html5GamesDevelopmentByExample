@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Chapter 5 - Building a Canvas Game Masterclass";
+    ViewBag.Header = "Untangle Puzzle Game";
+}
+
+@section styles {
+    <link href="http://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/bundles/chapterfive/less")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chapterfive/js")
+}
+
+<canvas id="game" width="768" height="400">
+    Sorry, your web browser does not support Canvas content.
+</canvas>
+<p>Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%</p>
