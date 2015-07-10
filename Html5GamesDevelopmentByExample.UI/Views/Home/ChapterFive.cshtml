@@ -4,7 +4,8 @@
 }
 
 @section styles {
-    <link href="http://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:600" rel="stylesheet" type="text/css" />
     @Styles.Render("~/bundles/chapterfive/less")
 }
 
@@ -12,7 +13,9 @@
     @Scripts.Render("~/bundles/chapterfive/js")
 }
 
-<canvas id="game" width="768" height="400">
-    Sorry, your web browser does not support Canvas content.
-</canvas>
-<p>Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%</p>
+<section id="page">
+    <canvas id="game" width="768" height="400">
+        Sorry, your web browser does not support Canvas content.
+    </canvas>
+    @*<p>Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%</p>*@
+</section>

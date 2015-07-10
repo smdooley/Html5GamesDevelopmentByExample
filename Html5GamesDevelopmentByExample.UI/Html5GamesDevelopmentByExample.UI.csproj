@@ -116,6 +116,10 @@
     <Content Include="Content\ChapterFive\css\untangle.min.css">
       <DependentUpon>untangle.css</DependentUpon>
     </Content>
+    <Content Include="Content\ChapterFive\img\bg_repeat.png" />
+    <Content Include="Content\ChapterFive\img\board.png" />
+    <Content Include="Content\ChapterFive\img\guide_sprite.png" />
+    <Content Include="Content\ChapterFive\img\title_bg.png" />
     <Content Include="Content\ChapterFive\js\html5games.untangle.js" />
     <Content Include="Content\ChapterFour\css\untangle.css">
       <DependentUpon>untangle.less</DependentUpon>
@@ -193,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\ChapterFive\img\" />
     <Folder Include="Content\ChapterFour\img\" />
     <Folder Include="Content\ChapterTwo\img\" />
     <Folder Include="Models\" />
