@@ -29,26 +29,30 @@ namespace Html5GamesDevelopmentByExample.UI.App_Start
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-
-            bundles.Add(new LessBundle("~/bundles/chaptertwo/less").Include(
-                "~/Content/ChapterTwo/css/*.less"));
+            bundles.Add(new StyleBundle("~/bundles/chaptertwo/css").Include(
+                "~/Content/ChapterTwo/css/*.css"));
             bundles.Add(new ScriptBundle("~/bundles/chaptertwo/js").Include(
                 "~/Content/ChapterTwo/js/*.js"));
 
-            bundles.Add(new LessBundle("~/bundles/chapterthree/less").Include(
-                "~/Content/ChapterThree/css/*.less"));
+            bundles.Add(new StyleBundle("~/bundles/chapterthree/css").Include(
+                "~/Content/ChapterThree/css/*.css"));
             bundles.Add(new ScriptBundle("~/bundles/chapterthree/js").Include(
                 "~/Content/ChapterThree/js/*.js"));
 
-            bundles.Add(new LessBundle("~/bundles/chapterfour/less").Include(
-                "~/Content/chapterfour/css/*.less"));
+            bundles.Add(new StyleBundle("~/bundles/chapterfour/css").Include(
+                "~/Content/chapterfour/css/*.css"));
             bundles.Add(new ScriptBundle("~/bundles/chapterfour/js").Include(
                 "~/Content/chapterfour/js/*.js"));
 
-            bundles.Add(new LessBundle("~/bundles/chapterfive/less").Include(
-                "~/Content/chapterfive/css/*.less"));
+            bundles.Add(new StyleBundle("~/bundles/chapterfive/css").Include(
+                "~/Content/chapterfive/css/*.css"));
             bundles.Add(new ScriptBundle("~/bundles/chapterfive/js").Include(
                 "~/Content/chapterfive/js/*.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/chaptersix/css").Include(
+                "~/Content/chaptersix/css/*.css"));
+            bundles.Add(new ScriptBundle("~/bundles/chaptersix/js").Include(
+                "~/Content/chaptersix/js/*.js"));
         }
     }
 }

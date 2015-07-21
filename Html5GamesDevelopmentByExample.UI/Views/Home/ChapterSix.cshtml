@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Adding Sound Effects to your Games";
+    ViewBag.Header = "HTML5 Audio Game";
+}
+
+@section styles {
+    @Styles.Render("~/bundles/chaptersix/css")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chaptersix/js")
+}
+
+<div id="game">
+    <section id="menu-scene" class="scene">
+        <a href="#game"><span>Play</span></a>
+    </section>
+</div>
+
+<audio id="buttonover">
+    <source src="~/Content/ChapterSix/media/button_over.wav" />
+    <source src="~/Content/ChapterSix/media/button_over.ogg" />
+    <!-- Any code for browser that does not support the audio tag -->
+</audio>
+
+<audio id="buttonactive">
+    <source src="~/Content/ChapterSix/media/button_active.mp3" />
+    <source src="~/Content/ChapterSix/media/button_active.ogg" />
+    <!-- Any code for browser that does not support the audio tag -->
+</audio>

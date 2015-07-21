@@ -128,6 +128,23 @@
       <DependentUpon>untangle.css</DependentUpon>
     </Content>
     <Content Include="Content\ChapterFour\js\html5games.untangle.js" />
+    <Content Include="Content\ChapterSix\css\audiogame.css">
+      <DependentUpon>audiogame.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterSix\css\audiogame.min.css">
+      <DependentUpon>audiogame.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterSix\images\dot.png" />
+    <Content Include="Content\ChapterSix\images\game_bg.jpg" />
+    <Content Include="Content\ChapterSix\images\hit_line.png" />
+    <Content Include="Content\ChapterSix\images\menu_bg.jpg" />
+    <Content Include="Content\ChapterSix\images\play_button.png" />
+    <Content Include="Content\ChapterSix\js\html5games.audio.js" />
+    <Content Include="Content\ChapterSix\media\button_active.mp3" />
+    <Content Include="Content\ChapterSix\media\button_over.mp3" />
+    <Content Include="Content\ChapterSix\media\button_over.wav" />
+    <Content Include="Content\ChapterSix\media\minuet_in_g.mp3" />
+    <Content Include="Content\ChapterSix\media\minuet_in_g_melody.mp3" />
     <Content Include="Content\ChapterThree\css\chapter-three.css">
       <DependentUpon>chapter-three.less</DependentUpon>
     </Content>
@@ -187,6 +204,15 @@
     <Content Include="Content\ChapterFive\css\untangle.less" />
     <Content Include="Content\ChapterFive\css\untangle.css.map">
       <DependentUpon>untangle.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterSix\media\button_active.ogg" />
+    <Content Include="Content\ChapterSix\media\button_over.ogg" />
+    <Content Include="Content\ChapterSix\media\minuet_in_g.ogg" />
+    <Content Include="Content\ChapterSix\media\minuet_in_g_melody.ogg" />
+    <Content Include="Views\Home\ChapterSix.cshtml" />
+    <Content Include="Content\ChapterSix\css\audiogame.less" />
+    <Content Include="Content\ChapterSix\css\audiogame.css.map">
+      <DependentUpon>audiogame.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
