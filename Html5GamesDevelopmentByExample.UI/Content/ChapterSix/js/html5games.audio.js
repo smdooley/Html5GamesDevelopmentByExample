@@ -16,6 +16,9 @@ audiogame.totalSuccessCount = 0;
 // store the success count of last 5 results
 audiogame.successCount = 5;
 
+// toggle between record and playing mode
+audiogame.isRecordMode = true;
+
 // init function when the DOM is ready
 $(function () {
     // get references of the audio elements
@@ -56,23 +59,42 @@ $(function () {
         $('#hit-line-' + line).removeClass('hide');
         $('#hit-line-' + line).addClass('show');
 
-        // our target is J(74), K(75), L(76)
-        var hitLine = e.which - 73;
 
-        // check if hit a music note dot
-        for (var i in audiogame.dots) {
-            if (hitLine === audiogame.dots[i].line && Math.abs(audiogame.dots[i].distance) < 20) {
-                // remove the hit dot from the dots array
-                audiogame.dots.splice(i, 1);
+        if (audiogame.isRecordMode) {
 
-                // increase the success count
-                audiogame.successCount++;
+            // print the stored music notes when press ";" (186)
+            if (e.which === 186) {
+                var musicNotesString = '';
+                for (var i in audiogame.musicNotes) {
+                    musicNotesString += audiogame.musicNotes[i].time + ', ' + audiogame.musicNotes[i].line + ';';
+                }
+                console.log(musicNotesString);
+            }
 
-                // keep only 5 success count max
-                audiogame.successCount = Math.min(5, audiogame.successCount);
+            var currentTime = parseInt(audiogame.melody.currentTime * 1000) / 1000;
+            var note = new MusicNote(currentTime, e.which - 73);
+            audiogame.musicNotes.push(note);
 
-                // increase the total success count
-                audiogame.totalSuccessCount++;
+        } else {
+
+            // our target is J(74), K(75), L(76)
+            var hitLine = e.which - 73;
+
+            // check if hit a music note dot
+            for (var i in audiogame.dots) {
+                if (hitLine === audiogame.dots[i].line && Math.abs(audiogame.dots[i].distance) < 20) {
+                    // remove the hit dot from the dots array
+                    audiogame.dots.splice(i, 1);
+
+                    // increase the success count
+                    audiogame.successCount++;
+
+                    // keep only 5 success count max
+                    audiogame.successCount = Math.min(5, audiogame.successCount);
+
+                    // increase the total success count
+                    audiogame.totalSuccessCount++;
+                }
             }
         }
     });
@@ -85,8 +107,11 @@ $(function () {
     });
 
     drawBackground();
-    setupLevelData();
-    setInterval(gameloop, 30);
+
+    if (!audiogame.isRecordMode) {
+        setupLevelData();
+        setInterval(gameloop, 30);
+    }
 });
 
 function drawBackground() {
