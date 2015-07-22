@@ -2,7 +2,7 @@
 var audiogame = {};
 // array to store all the music notes
 audiogame.musicNotes = [];
-// represents time and line of music note
+// represents time and line of music note i.e. music_current_time, line; music_current_time, line;
 audiogame.levelData = '1.592,3;1.984,2;2.466,1;2.949,2;4.022,3;';
 // visual dots on the canvas
 audiogame.dots = [];
@@ -10,6 +10,11 @@ audiogame.dots = [];
 audiogame.startingTime = 0;
 // reference of the dot image
 audiogame.dotImage = new Image();
+
+audiogame.totalDotsCount = 0;
+audiogame.totalSuccessCount = 0;
+// store the success count of last 5 results
+audiogame.successCount = 5;
 
 // init function when the DOM is ready
 $(function () {
@@ -39,13 +44,49 @@ $(function () {
         audiogame.buttonActiveSound.currentTime = 0;
         audiogame.buttonActiveSound.play();
 
+        $('#game-scene').addClass('show-scene');
+        startGame();
+
         return false;
+    });
+
+    $(document).keydown(function(e) {
+        var line = e.which - 73;
+
+        $('#hit-line-' + line).removeClass('hide');
+        $('#hit-line-' + line).addClass('show');
+
+        // our target is J(74), K(75), L(76)
+        var hitLine = e.which - 73;
+
+        // check if hit a music note dot
+        for (var i in audiogame.dots) {
+            if (hitLine === audiogame.dots[i].line && Math.abs(audiogame.dots[i].distance) < 20) {
+                // remove the hit dot from the dots array
+                audiogame.dots.splice(i, 1);
+
+                // increase the success count
+                audiogame.successCount++;
+
+                // keep only 5 success count max
+                audiogame.successCount = Math.min(5, audiogame.successCount);
+
+                // increase the total success count
+                audiogame.totalSuccessCount++;
+            }
+        }
+    });
+
+    $(document).keyup(function(e) {
+        var line = e.which - 73;
+
+        $('#hit-line-' + line).removeClass('show');
+        $('#hit-line-' + line).addClass('hide');
     });
 
     drawBackground();
     setupLevelData();
     setInterval(gameloop, 30);
-    startGame();
 });
 
 function drawBackground() {
@@ -106,6 +147,10 @@ function Dot(distance, line) {
 // extract the string in the MusicNote object instances and store in an array
 function setupLevelData() {
     var notes = audiogame.levelData.split(';');
+
+    // store the total number of dots
+    audiogame.totalDotsCount = notes.length;
+
     for (var i in notes) {
         var note = notes[i].split(',');
         var time = parseFloat(note[0]);
@@ -134,7 +179,7 @@ function gameloop() {
 
     // show new dots
     // if the game has started
-    if (audiogame.startingTime != 0) {
+    if (audiogame.startingTime !== 0) {
         for (var i in audiogame.musicNotes) {
             // get the elapsed time from beginning of the melody
             var date = new Date();
@@ -143,6 +188,7 @@ function gameloop() {
 
             // check if the dot appear time is as same as the elapsed time
             var timeDiff = note.time - elapsedTime;
+            // if the time difference between the note's current time and elapsed time is within 30 ms, then we create the visual dot instance and let the gameloop function draw it
             if (timeDiff >= 0 && timeDiff <= .03) {
                 // create the dot when the appear time is within one frame of the elapsed time
                 var dot = new Dot(ctx.canvas.height - 150, note.line);
@@ -185,4 +231,31 @@ function gameloop() {
         ctx.drawImage(audiogame.dotImage, -audiogame.dotImage.width / 2, -audiogame.dotImage.height / 2);
         ctx.restore();
     }
+
+    for (var i in audiogame.dots) {
+        if (!audiogame.dots[i].missed && audiogame.dots[i].distance < -10) {
+            // mark the dot as missed if it is not mark before
+            audiogame.dots[i].missed = true;
+
+            // reduce the success count
+            audiogame.successCount--;
+
+            // reset the success count to 0 if it is lower than 0
+            audiogame.successCount = Math.max(0, audiogame.successCount);
+        }
+
+        // remove missed dots after move to the bottom
+        if (audiogame.dots[i].distance < -100) {
+            audiogame.dots.splice(i, 1);
+        }
+    }
+
+    // calculate the percentage of the success in the last 5 music dots
+    var successPercent = audiogame.successCount / 5;
+
+    // prevent the successPercent to exceed range(fail safe)
+    successPercent = Math.max(0, Math.min(1, successPercent));
+
+    // adjust melody volume dependent on successPercent
+    audiogame.melody.volume = successPercent;
 }
