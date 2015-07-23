@@ -128,6 +128,13 @@
       <DependentUpon>untangle.css</DependentUpon>
     </Content>
     <Content Include="Content\ChapterFour\js\html5games.untangle.js" />
+    <Content Include="Content\ChapterSeven\css\matchgame.css">
+      <DependentUpon>matchgame.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterSeven\css\matchgame.min.css">
+      <DependentUpon>matchgame.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ChapterSeven\img\popup_bg.jpg" />
     <Content Include="Content\ChapterSix\css\audiogame.css">
       <DependentUpon>audiogame.less</DependentUpon>
     </Content>
@@ -145,6 +152,12 @@
     <Content Include="Content\ChapterSix\media\button_over.wav" />
     <Content Include="Content\ChapterSix\media\minuet_in_g.mp3" />
     <Content Include="Content\ChapterSix\media\minuet_in_g_melody.mp3" />
+    <Content Include="Content\ChapterSeven\img\AK.png" />
+    <Content Include="Content\ChapterSeven\img\AQ.png" />
+    <Content Include="Content\ChapterSeven\img\bg.jpg" />
+    <Content Include="Content\ChapterSeven\img\deck.png" />
+    <Content Include="Content\ChapterSeven\img\table.jpg" />
+    <Content Include="Content\ChapterSeven\js\html5.matchgame.js" />
     <Content Include="Content\ChapterThree\css\chapter-three.css">
       <DependentUpon>chapter-three.less</DependentUpon>
     </Content>
@@ -213,6 +226,11 @@
     <Content Include="Content\ChapterSix\css\audiogame.less" />
     <Content Include="Content\ChapterSix\css\audiogame.css.map">
       <DependentUpon>audiogame.css</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\ChapterSeven.cshtml" />
+    <Content Include="Content\ChapterSeven\css\matchgame.less" />
+    <Content Include="Content\ChapterSeven\css\matchgame.css.map">
+      <DependentUpon>matchgame.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

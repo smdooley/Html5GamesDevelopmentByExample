@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Chapter Seven - HTML5 Game Development";
+    ViewBag.Header = "CSS3 Matching Game";
+}
+
+@section styles {
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css">
+    @Styles.Render("~/bundles/chapterseven/css")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chapterseven/js")
+}
+
+<div id="timer">
+    Elapsed time: <span id="elapsed-time">00:00</span>
+</div>
+<section id="game">
+    <div id="cards">
+        <div class="card">
+            <div class="face front"></div>
+            <div class="face back"></div>
+        </div>
+    </div>
+</section>
+<section id="popup" class="hide">
+    <div id="popup-bg"></div>
+    <div id="popup-box">
+        <div id="popup-box-content">
+            <h1>You won!</h1>
+            <p>Your score:</p>
+            <p><span class="score">13</span></p>
+            <p><small>Last score: <span class="last-score">20</span></small></p>
+        </div>
+    </div>
+</section>
