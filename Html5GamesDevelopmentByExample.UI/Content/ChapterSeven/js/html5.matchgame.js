@@ -1,4 +1,5 @@
 var matchingGame = {};
+
 matchingGame.deck = [
     'cardAK', 'cardAK',
     'cardAK', 'cardAK',
@@ -7,6 +8,17 @@ matchingGame.deck = [
     'cardBQ', 'cardBQ',
     'cardBJ', 'cardBJ',
 ];
+
+matchingGame.savingObject = {};
+
+// an array to store the current deck
+matchingGame.savingObject.deck = [];
+
+// an array to store which card is removed by storing their index
+matchingGame.savingObject.removedCards = [];
+
+// store the counting elapsed time
+matchingGame.savingObject.currentElapsedTime = 0;
 
 function shuffle() {
     return 0.5 - Math.random();
@@ -44,7 +56,11 @@ function isMatchPattern() {
 }
 
 function removeTookCards() {
-    $('.card-removed').remove();
+    // add each removed card into the array which stores what cards have been removed
+    $('.card-removed').each(function (index, element) {
+        matchingGame.savingObject.removedCards.push($(element).data('card-index'));
+        $(element).remove();
+    });
 
     // check if all cards are removed and show game over
     if ($('.card').length === 0) {
@@ -87,6 +103,11 @@ function gameOver() {
     var savedTime = lastScoreObj.savedTime;
     $('.saved-time').html(savedTime);
 
+    // check if new record
+    if (lastElapsedTime === 0 || matchingGame.elapsedTime < lastElapsedTime) {
+        $('.ribbon').removeClass('hide');
+    }
+
     // get the current datetime
     var currentTime = new Date();
     var month = currentTime.getMonth() + 1;
@@ -111,11 +132,17 @@ function gameOver() {
 
     // show the game over popup
     $('#popup').removeClass('hide');
+
+    // clear any saved saving object
+    localStorage.removeItem('savingObject');
 }
 
 function countTimer() {
     // increment elapsed time
     matchingGame.elapsedTime++;
+
+    // save the current elapsed time into the saving object
+    matchingGame.savingObject.currentElapsedTime = matchingGame.elapsedTime;
 
     // calculate the minutes and seconds from elapsed time
     var minute = Math.floor(matchingGame.elapsedTime / 60);
@@ -127,12 +154,38 @@ function countTimer() {
 
     // display the elapsed time
     $('#elapsed-time').html(minute + ':' + second);
+
+    // save the game progress
+    saveSavingObject();
+}
+
+function saveSavingObject() {
+    // save the encoded saving object into local storage
+    localStorage['savingObject'] = JSON.stringify(matchingGame.savingObject);
+}
+
+function savedSavingObject() {
+    // returns the saved saving object from local storage
+    var savingObject = localStorage['savingObject'];
+    if (savingObject !== undefined) {
+        savingObject = JSON.parse(savingObject);
+    }
+    return savingObject;
 }
 
 $(function () {
 
     // shuffle the deck
     matchingGame.deck.sort(shuffle);
+
+    // re-create the saved deck
+    var savedObject = savedSavingObject();
+    if (savedObject !== undefined) {
+        matchingGame.deck = savedObject.deck;
+    }
+
+    // copy the deck into the saving object
+    matchingGame.savingObject.deck = matchingGame.deck.slice();
 
     // clone 12 copies of the card
     for (var i = 0; i < 11; i++) {
@@ -150,6 +203,12 @@ $(function () {
         // get a pattern from the shuffled deck
         var pattern = matchingGame.deck.pop();
 
+        // embed the pattern data into the DOM element
+        $(this).attr('data-pattern', pattern);
+
+        // save the index into the DOM element, so we know which is the next card
+        $(this).attr('data-card-index', index);
+
         // visually apply the pattern on the card's back face
         $(element).find('.back').addClass(pattern);
 
@@ -160,8 +219,24 @@ $(function () {
         $(element).on('click', selectCard);
     });
 
+    // remove cards that were removed in the savedObject
+    if (savedObject !== undefined) {
+        matchingGame.savingObject.removedCards = savedObject.removedCards;
+
+        // find and remove the removed cards
+        for (var i in matchingGame.savingObject.removedCards) {
+            $('.card[data-card-index=' + matchingGame.savingObject.removedCards[i] + ']').remove();
+        }
+    }
+
     // reset the elapsed time to 0
     matchingGame.elapsedTime = 0;
+
+    // restore the saved elapsed time
+    if (savedObject !== undefined) {
+        matchingGame.elapsedTime = savedObject.currentElapsedTime;
+        matchingGame.savingObject.currentElapsedTime = savedObject.currentElapsedTime;
+    }
 
     // start the timer
     matchingGame.timer = setInterval(countTimer, 1000);

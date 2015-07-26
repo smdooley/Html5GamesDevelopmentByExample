@@ -4,8 +4,8 @@
 }
 
 @section styles {
-    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Droid+Serif:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css">
     @Styles.Render("~/bundles/chapterseven/css")
 }
 
@@ -27,6 +27,12 @@
 <section id="popup" class="hide">
     <div id="popup-bg"></div>
     <div id="popup-box">
+        <div class="ribbon hide">
+            <div class="ribbon-body">
+                <span>New Record</span>
+            </div>
+            <div class="triangle"></div>
+        </div>
         <div id="popup-box-content">
             <h1>You won!</h1>
             <p>Your score:</p>
