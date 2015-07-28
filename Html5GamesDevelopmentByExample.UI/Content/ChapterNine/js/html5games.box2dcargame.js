@@ -24,6 +24,19 @@ $(function () {
     carGame.ground = createGround();
     console.log('The ground is created.', carGame.ground);
 
+    // create a box
+    var boxSd = new b2BoxDef();
+    boxSd.density = 1.0;
+    boxSd.friction = 1.5;
+    boxSd.restitution = .4;
+    boxSd.extents.Set(40, 20);
+
+    var boxBd = new b2BodyDef();
+    boxBd.AddShape(boxSd);
+    boxBd.position.Set(50, 210);
+
+    carGame.world.CreateBody(boxBd);
+
     // get context reference
     canvas = document.getElementById('game');
     ctx = canvas.getContext('2d');
