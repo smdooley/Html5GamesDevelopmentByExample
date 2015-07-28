@@ -128,6 +128,74 @@
       <DependentUpon>untangle.css</DependentUpon>
     </Content>
     <Content Include="Content\ChapterFour\js\html5games.untangle.js" />
+    <Content Include="Content\ChapterNine\css\cargame.css" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2AABB.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Bound.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2BoundValues.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2BroadPhase.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2BufferedPair.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Collision.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2ContactID.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2ContactPoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Distance.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Manifold.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2OBB.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Pair.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2PairCallback.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2PairManager.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\b2Proxy.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\ClipVertex.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\Features.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2BoxDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2CircleDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2CircleShape.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2MassData.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2PolyDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2PolyShape.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2Shape.js" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\shapes\b2ShapeDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\common\b2Settings.js" />
+    <Content Include="Content\ChapterNine\js\box2d\common\math\b2Mat22.js" />
+    <Content Include="Content\ChapterNine\js\box2d\common\math\b2Math.js" />
+    <Content Include="Content\ChapterNine\js\box2d\common\math\b2Vec2.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2Body.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2BodyDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2CollisionFilter.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2ContactManager.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2Island.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2TimeStep.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2World.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\b2WorldListener.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2CircleContact.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2Conservative.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2Contact.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2ContactConstraint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2ContactConstraintPoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2ContactNode.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2ContactRegister.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2ContactSolver.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2NullContact.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2PolyAndCircleContact.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\contacts\b2PolyContact.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2DistanceJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2DistanceJointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2GearJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2GearJointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2Jacobian.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2Joint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2JointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2JointNode.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2MouseJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2MouseJointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2PrismaticJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2PrismaticJointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2PulleyJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2PulleyJointDef.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2RevoluteJoint.js" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\joints\b2RevoluteJointDef.js" />
+    <Content Include="Content\ChapterNine\js\excanvas.js" />
+    <Content Include="Content\ChapterNine\js\html5games.box2dcargame.js" />
+    <Content Include="Content\ChapterNine\js\protoclass.js" />
     <Content Include="Content\ChapterSeven\css\matchgame.css">
       <DependentUpon>matchgame.less</DependentUpon>
     </Content>
@@ -232,6 +300,12 @@
     <Content Include="Content\ChapterSeven\css\matchgame.css.map">
       <DependentUpon>matchgame.css</DependentUpon>
     </Content>
+    <Content Include="Views\Home\ChapterNine.cshtml" />
+    <Content Include="Content\ChapterNine\js\AUTHORS" />
+    <Content Include="Content\ChapterNine\js\box2d\collision\.DS_Store" />
+    <Content Include="Content\ChapterNine\js\box2d\dynamics\.DS_Store" />
+    <Content Include="Content\ChapterNine\js\COPYING" />
+    <Content Include="Content\ChapterNine\js\README" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -242,6 +316,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ChapterFour\img\" />
+    <Folder Include="Content\ChapterNine\img\" />
     <Folder Include="Content\ChapterTwo\img\" />
     <Folder Include="Models\" />
   </ItemGroup>

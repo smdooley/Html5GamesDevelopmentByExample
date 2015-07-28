@@ -6,4 +6,5 @@
 ## Chapter 5 - Building a Canvas Games Masterclass
 ## Chapter 6 - Adding Sound Effects to your Games (Handling the audio event on playback completes)
 ## Chapter 7 - Using Local Storage to Store Game Data
-## Chapter 8 - Building a Multiplayer Draw-and-Guess Game with WebSockets
+## Chapter 8 - Building a Multiplayer Draw-and-Guess Game with WebSockets (skipped)
+## Chapter 9 - Building a Physics Car Game with Box2D and Canvas (Putting a dynamic box in the world)

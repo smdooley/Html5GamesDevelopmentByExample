@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Chapter Nine - Building a Physics Car Game with Box2D and Canvas";
+    ViewBag.Header = "Building a Physics Car Game with Box2D and Canvas";
+}
+
+@section styles {
+    @Styles.Render("~/bundles/chapternine/css")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/chapternine/protoclass", "~/bundles/chapternine/box2d", "~/bundles/chapternine/js")
+}
+
+<canvas id="game" width="1300" height="600"></canvas>
