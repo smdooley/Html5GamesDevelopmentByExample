@@ -18,24 +18,33 @@ var ctx;
 var canvasWidth;
 var canvasHeight;
 
+var car;
+
 $(function () {
     carGame.world = createWorld();
     console.log('The world is created.', carGame.world);
     carGame.ground = createGround();
     console.log('The ground is created.', carGame.ground);
 
+    // create a car
+    car = createCarAt(50, 210);
+
     // create a box
-    var boxSd = new b2BoxDef();
-    boxSd.density = 1.0;
-    boxSd.friction = 1.5;
-    boxSd.restitution = .4;
-    boxSd.extents.Set(40, 20);
+    //var boxSd = new b2BoxDef();
+    //boxSd.density = 1.0;
+    //boxSd.friction = 1.5;
+    //boxSd.restitution = .4;
+    //boxSd.extents.Set(40, 20);
 
-    var boxBd = new b2BodyDef();
-    boxBd.AddShape(boxSd);
-    boxBd.position.Set(50, 210);
+    //var boxBd = new b2BodyDef();
+    //boxBd.AddShape(boxSd);
+    //boxBd.position.Set(50, 210);
 
-    carGame.world.CreateBody(boxBd);
+    //carGame.world.CreateBody(boxBd);
+
+    //// create two wheels in the world
+    //createWheel(carGame.world, 25, 230);
+    //createWheel(carGame.world, 75, 230);
 
     // get context reference
     canvas = document.getElementById('game');
@@ -45,6 +54,9 @@ $(function () {
 
     // draw the world
     drawWorld(carGame.world, ctx);
+
+    // start advancing the step
+    step();
 });
 
 function createWorld() {
@@ -78,6 +90,60 @@ function createGround() {
     var body = carGame.world.CreateBody(groundBd);
 
     return body;
+}
+
+function createWheel(world, x, y) {
+    // circle definition
+    var ballSd = new b2CircleDef();
+    ballSd.density = 1.0;
+    ballSd.radius = 10;
+    ballSd.restitution = 0.1;
+    ballSd.friction = 4.3;
+
+    // body definition
+    var ballBd = new b2BodyDef();
+    ballBd.AddShape(ballSd);
+    ballBd.position.Set(x, y);
+
+    return world.CreateBody(ballBd);
+}
+
+function createCarAt(x, y) {
+    // car box definition
+    var boxSd = new b2BoxDef();
+    boxSd.density = 1.0;
+    boxSd.friction = 1.5;
+    boxSd.restitution = .4;
+    boxSd.extents.Set(40, 20);
+
+    // car body definition
+    var boxBd = new b2BodyDef();
+    boxBd.AddShape(boxSd);
+    boxBd.position.Set(x, y);
+
+    var carBody = carGame.world.CreateBody(boxBd);
+
+    // create the wheels
+    var wheelBody1 = createWheel(carGame.world, x - 25, y + 20);
+    var wheelBody2 = createWheel(carGame.world, x + 25, y + 20);
+
+    // create a joint to connect left wheel to the car body
+    var jointDef = new b2RevoluteJointDef();
+    jointDef.anchorPoint.Set(x - 25, y + 20);
+    jointDef.body1 = carBody;
+    jointDef.body2 = wheelBody1;
+    carGame.world.CreateJoint(jointDef);
+
+    // create a joint to connect right wheel to the car body
+    var jointDef = new b2RevoluteJointDef();
+    jointDef.anchorPoint.Set(x + 25, y + 20);
+    jointDef.body1 = carBody;
+    jointDef.body2 = wheelBody2;
+    carGame.world.CreateJoint(jointDef);
+
+    return carBody;
+
+
 }
 
 // drawing functions
@@ -131,4 +197,11 @@ function drawShape(shape, context) {
             break;
     }
     context.stroke();
+}
+
+function step() {
+    carGame.world.Step(1.0 / 60, 1);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    drawWorld(carGame.world, ctx);
+    setTimeout(step, 10);
 }
