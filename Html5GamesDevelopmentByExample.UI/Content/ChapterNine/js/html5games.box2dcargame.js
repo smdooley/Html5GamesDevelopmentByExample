@@ -21,30 +21,25 @@ var canvasHeight;
 var car;
 
 $(function () {
-    carGame.world = createWorld();
-    console.log('The world is created.', carGame.world);
-    carGame.ground = createGround();
-    console.log('The ground is created.', carGame.ground);
 
-    // create a car
-    car = createCarAt(50, 210);
+    $(document).keydown(function (e) {
+        switch (e.keyCode) {
+            case 88: // x key to apply force towards the right
+                var force = new b2Vec2(10000000, 0);
+                carGame.car.ApplyForce(force, carGame.car.GetCenterPosition());
+                break;
+            case 90: // z key to apply force towards the left
+                var force = new b2Vec2(-10000000, 0);
+                carGame.car.ApplyForce(force, carGame.car.GetCenterPosition());
+                break;
+            case 82: // r key to restart the game
+                restartGame();
+                break;
+        }
+    });
 
-    // create a box
-    //var boxSd = new b2BoxDef();
-    //boxSd.density = 1.0;
-    //boxSd.friction = 1.5;
-    //boxSd.restitution = .4;
-    //boxSd.extents.Set(40, 20);
-
-    //var boxBd = new b2BodyDef();
-    //boxBd.AddShape(boxSd);
-    //boxBd.position.Set(50, 210);
-
-    //carGame.world.CreateBody(boxBd);
-
-    //// create two wheels in the world
-    //createWheel(carGame.world, 25, 230);
-    //createWheel(carGame.world, 75, 230);
+    // initialize the game
+    restartGame();
 
     // get context reference
     canvas = document.getElementById('game');
@@ -77,16 +72,17 @@ function createWorld() {
     return world;
 }
 
-function createGround() {
+function createGround(x, y, width, height, rotation) {
     // box shape definition
     var groundSd = new b2BoxDef();
-    groundSd.extents.Set(250, 25);
+    groundSd.extents.Set(width, height);
     groundSd.restitution = 0.4;
 
     // body definition with the given shape we just created
     var groundBd = new b2BodyDef();
     groundBd.AddShape(groundSd);
-    groundBd.position.Set(250, 370);
+    groundBd.position.Set(x, y);
+    groundBd.rotation = rotation * Math.PI / 180;
     var body = carGame.world.CreateBody(groundBd);
 
     return body;
@@ -204,4 +200,42 @@ function step() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     drawWorld(carGame.world, ctx);
     setTimeout(step, 10);
+
+    // loop all in the contact list to check if the car hits the winning wall
+    for (var cn = carGame.world.GetContactList() ; cn != null; cn = cn.GetNext()) {
+        var body1 = cn.GetShape1().GetBody();
+        var body2 = cn.GetShape2().GetBody();
+
+        if ((body1 === carGame.car && body2 === carGame.gamewinWall) || (body2 === carGame.car && body1 === carGame.gamewinWall)) {
+            console.log('level passed');
+            restartGame();
+        }
+
+        if ((body1 === carGame.car && body2 === carGame.pitPlatform) || (body2 === carGame.car && body1 === carGame.pitPlatform)) {
+            console.log('car in the pit');
+            restartGame();
+        }
+    }
+}
+
+function restartGame() {
+    // create the world
+    carGame.world = createWorld();
+
+    // create the ground
+    carGame.ground = createGround(250, 270, 250, 25, 0);
+
+    // create the ramps
+    createGround(500, 250, 65, 15, -10);
+    createGround(600, 225, 80, 15, -20);
+    createGround(1100, 250, 100, 15, 0);
+
+    // create a destination platform
+    carGame.gamewinWall = createGround(1200, 215, 15, 25, 0);
+
+    // create pit platform to catch falling car
+    carGame.pitPlatform = createGround(650, 550, 650, 1, 0);
+
+    // create a car
+    carGame.car = createCarAt(50, 210);
 }
