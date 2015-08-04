@@ -11,7 +11,39 @@
  */
 
 // global object that contains the variable needed for the car game
-var carGame = {};
+var carGame = {
+    currentLevel: 0
+};
+
+carGame.levels = new Array();
+carGame.levels[0] = [
+    { "type": "car", "x": 50, "y": 210, "fuel": 20 },
+    { "type": "box", "x": 250, "y": 270, "width": 250, "height": 25, "rotation": 0 },
+    { "type": "box", "x": 500, "y": 250, "width": 65, "height": 15, "rotation": -10 },
+    { "type": "box", "x": 600, "y": 225, "width": 80, "height": 15, "rotation": -20 },
+    { "type": "box", "x": 950, "y": 225, "width": 80, "height": 15, "rotation": 20 },
+    { "type": "box", "x": 1100, "y": 250, "width": 100, "height": 15, "rotation": 0 },
+    { "type": "win", "x": 1200, "y": 215, "width": 15, "height": 25, "rotation": 0 }
+];
+carGame.levels[1] = [
+    {"type":"car","x":50,"y":210,"fuel":20},
+    {"type":"box","x":100, "y":270, "width":190, "height":15, "rotation":20},
+    {"type":"box","x":380, "y":320, "width":100, "height":15, "rotation":-10},
+    { "type": "box", "x": 666, "y": 285, "width": 80, "height": 15, "rotation": -32 },
+    { "type": "box", "x": 950, "y": 295, "width": 80, "height": 15, "rotation": 20 },
+    { "type": "box", "x": 1100, "y": 310, "width": 100, "height": 15, "rotation": 0 },
+    { "type": "win", "x": 1200, "y": 275, "width": 15, "height": 25, "rotation": 0 }
+];
+
+carGame.levels[2] = [
+    { "type": "car", "x": 50, "y": 210, "fuel": 20 },
+    { "type": "box", "x": 100, "y": 270, "width": 190, "height": 15, "rotation": 20 },
+    { "type": "box", "x": 380, "y": 320, "width": 100, "height": 15, "rotation": -10 },
+    { "type": "box", "x": 686, "y": 285, "width": 80, "height": 15, "rotation": -32 },
+    { "type": "box", "x": 250, "y": 495, "width": 80, "height": 15, "rotation": 40 },
+    { "type": "box", "x": 500, "y": 540, "width": 200, "height": 15, "rotation": 0 },
+    { "type": "win", "x": 220, "y": 425, "width": 15, "height": 25, "rotation": 23 }
+];
 
 var canvas;
 var ctx;
@@ -33,13 +65,13 @@ $(function () {
                 carGame.car.ApplyForce(force, carGame.car.GetCenterPosition());
                 break;
             case 82: // r key to restart the game
-                restartGame();
+                restartGame(carGame.currentLevel);
                 break;
         }
     });
 
     // initialize the game
-    restartGame();
+    restartGame(carGame.currentLevel);
 
     // get context reference
     canvas = document.getElementById('game');
@@ -208,34 +240,39 @@ function step() {
 
         if ((body1 === carGame.car && body2 === carGame.gamewinWall) || (body2 === carGame.car && body1 === carGame.gamewinWall)) {
             console.log('level passed');
-            restartGame();
+            restartGame(carGame.currentLevel + 1);
         }
 
-        if ((body1 === carGame.car && body2 === carGame.pitPlatform) || (body2 === carGame.car && body1 === carGame.pitPlatform)) {
-            console.log('car in the pit');
-            restartGame();
-        }
+        //if ((body1 === carGame.car && body2 === carGame.pitPlatform) || (body2 === carGame.car && body1 === carGame.pitPlatform)) {
+        //    console.log('car in the pit');
+        //    restartGame(carGame.currentLevel);
+        //}
     }
 }
 
-function restartGame() {
+function restartGame(level) {
+
+    // set the current level
+    carGame.currentLevel = level;
+
     // create the world
     carGame.world = createWorld();
 
-    // create the ground
-    carGame.ground = createGround(250, 270, 250, 25, 0);
+    // create a ground in our newly created world
+    // load the ground info from level data
+    for (var i = 0; i < carGame.levels[level].length; i++) {
+        var obj = carGame.levels[level][i];
 
-    // create the ramps
-    createGround(500, 250, 65, 15, -10);
-    createGround(600, 225, 80, 15, -20);
-    createGround(1100, 250, 100, 15, 0);
+        // create car
+        if (obj.type === "car") {
+            carGame.car = createCarAt(obj.x, obj.y);
+            continue;
+        }
 
-    // create a destination platform
-    carGame.gamewinWall = createGround(1200, 215, 15, 25, 0);
+        var groundBody = createGround(obj.x, obj.y, obj.width, obj.height, obj.rotation);
 
-    // create pit platform to catch falling car
-    carGame.pitPlatform = createGround(650, 550, 650, 1, 0);
-
-    // create a car
-    carGame.car = createCarAt(50, 210);
+        if (obj.type === "win") {
+            carGame.gamewinWall = groundBody;
+        }
+    }
 }
