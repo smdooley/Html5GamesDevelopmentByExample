@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Box2D Car Game Example
  * http://42games.net/html5games/box2d-car-game/
  * 
@@ -104,11 +104,15 @@ function createWorld() {
     return world;
 }
 
-function createGround(x, y, width, height, rotation) {
+function createGround(x, y, width, height, rotation, type) {
     // box shape definition
     var groundSd = new b2BoxDef();
     groundSd.extents.Set(width, height);
     groundSd.restitution = 0.4;
+
+    if (type === "win") {
+        groundSd.userData = document.getElementById("flag");
+    }
 
     // body definition with the given shape we just created
     var groundBd = new b2BodyDef();
@@ -127,6 +131,7 @@ function createWheel(world, x, y) {
     ballSd.radius = 10;
     ballSd.restitution = 0.1;
     ballSd.friction = 4.3;
+    ballSd.userData = document.getElementById("wheel");
 
     // body definition
     var ballBd = new b2BodyDef();
@@ -143,6 +148,7 @@ function createCarAt(x, y) {
     boxSd.friction = 1.5;
     boxSd.restitution = .4;
     boxSd.extents.Set(40, 20);
+    boxSd.userData = document.getElementById("bus");
 
     // car body definition
     var boxBd = new b2BodyDef();
@@ -176,9 +182,25 @@ function createCarAt(x, y) {
 
 // drawing functions
 function drawWorld(world, context) {
-    for (var b = world.m_bodyList; b != null; b = b.m_next) {
+    for (var b = world.m_bodyList; b !== null; b = b.m_next) {
         for (var s = b.GetShapeList() ; s != null; s = s.GetNext()) {
-            drawShape(s, context);
+            if (s.GetUserData() !== null || s.GetUserData() != undefined) {
+                // the user data contains the reference to the image
+                var img = s.GetUserData();
+                // the x﻿ and y of the image.
+                // we have to substract the half width/height at all shapes have center origin point
+                var x = s.GetPosition().x;
+                var y = s.GetPosition().y;
+                var topleftX = -$(img).width() / 2;
+                var topleftY = -$(img).height() / 2;
+                context.save();
+                context.translate(x, y);
+                context.rotate(s.GetBody().GetRotation());
+                context.drawImage(img, topleftX, topleftY);
+                context.restore();
+            } else {
+                drawShape(s, context);
+            }
         }
     }
 }
@@ -269,7 +291,7 @@ function restartGame(level) {
             continue;
         }
 
-        var groundBody = createGround(obj.x, obj.y, obj.width, obj.height, obj.rotation);
+        var groundBody = createGround(obj.x, obj.y, obj.width, obj.height, obj.rotation, obj.type);
 
         if (obj.type === "win") {
             carGame.gamewinWall = groundBody;

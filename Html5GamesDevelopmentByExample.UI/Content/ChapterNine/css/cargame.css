@@ -14,3 +14,8 @@
 #game {
 	background-color:#eee;
 }
+
+#asset {
+    position: absolute;
+    top: -9999px;
+}

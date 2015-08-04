@@ -7,4 +7,4 @@
 ## Chapter 6 - Adding Sound Effects to your Games (Handling the audio event on playback completes)
 ## Chapter 7 - Using Local Storage to Store Game Data
 ## Chapter 8 - Building a Multiplayer Draw-and-Guess Game with WebSockets (skipped)
-## Chapter 9 - Building a Physics Car Game with Box2D and Canvas (Adding a flag graphic and a car graphic to the game)
+## Chapter 9 - Building a Physics Car Game with Box2D and Canvas (Decorating the game and adding a fuel limitation)
