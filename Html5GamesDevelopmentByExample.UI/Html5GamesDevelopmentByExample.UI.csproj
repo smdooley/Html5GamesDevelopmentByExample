@@ -129,6 +129,17 @@
     </Content>
     <Content Include="Content\ChapterFour\js\html5games.untangle.js" />
     <Content Include="Content\ChapterNine\css\cargame.css" />
+    <Content Include="Content\ChapterNine\img\bg.jpg" />
+    <Content Include="Content\ChapterNine\img\bg2.jpg" />
+    <Content Include="Content\ChapterNine\img\bg3.jpg" />
+    <Content Include="Content\ChapterNine\img\bg4.jpg" />
+    <Content Include="Content\ChapterNine\img\bg5.jpg" />
+    <Content Include="Content\ChapterNine\img\bus.png" />
+    <Content Include="Content\ChapterNine\img\flag.png" />
+    <Content Include="Content\ChapterNine\img\game_completed_screen.jpg" />
+    <Content Include="Content\ChapterNine\img\starting_screen.jpg" />
+    <Content Include="Content\ChapterNine\img\website_background.jpg" />
+    <Content Include="Content\ChapterNine\img\wheel.png" />
     <Content Include="Content\ChapterNine\js\box2d\collision\b2AABB.js" />
     <Content Include="Content\ChapterNine\js\box2d\collision\b2Bound.js" />
     <Content Include="Content\ChapterNine\js\box2d\collision\b2BoundValues.js" />
@@ -316,7 +327,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ChapterFour\img\" />
-    <Folder Include="Content\ChapterNine\img\" />
     <Folder Include="Content\ChapterTwo\img\" />
     <Folder Include="Models\" />
   </ItemGroup>
