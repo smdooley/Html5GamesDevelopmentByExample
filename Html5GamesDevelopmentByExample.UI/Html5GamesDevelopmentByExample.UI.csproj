@@ -314,7 +314,6 @@
     <Content Include="Views\Home\ChapterNine.cshtml" />
     <Content Include="Content\ChapterNine\js\AUTHORS" />
     <Content Include="Content\ChapterNine\js\box2d\collision\.DS_Store" />
-    <Content Include="Content\ChapterNine\js\box2d\dynamics\.DS_Store" />
     <Content Include="Content\ChapterNine\js\COPYING" />
     <Content Include="Content\ChapterNine\js\README" />
     <None Include="Web.Debug.config">
