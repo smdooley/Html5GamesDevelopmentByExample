@@ -145,6 +145,12 @@ function step() {
 
     setTimeout(step, 10);
 
+    // check if the car has fallen off the screen then restart the current level
+    if (carGame.car.IsFrozen()) {
+        console.log('car is off screen');
+        restartGame(carGame.currentLevel);
+    }
+
     // loop all contact list to check if the car hits the winning wall
     for (var cn = carGame.world.GetContactList() ; cn != null; cn = cn.GetNext()) {
         var body1 = cn.GetShape1().GetBody();
