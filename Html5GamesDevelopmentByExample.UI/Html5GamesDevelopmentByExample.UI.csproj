@@ -110,6 +110,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CanvasEngine\js\canvasengine-1.3.2.all.min.js" />
+    <Content Include="Content\CanvasEngine\js\canvasengine.js" />
+    <Content Include="Content\CanvasEngine\js\main.js" />
     <Content Include="Content\ChapterFive\css\untangle.css">
       <DependentUpon>untangle.less</DependentUpon>
     </Content>
@@ -316,6 +319,9 @@
     <Content Include="Content\ChapterNine\js\box2d\collision\.DS_Store" />
     <Content Include="Content\ChapterNine\js\COPYING" />
     <Content Include="Content\ChapterNine\js\README" />
+    <Content Include="Views\BoxCar\Index.cshtml" />
+    <Content Include="Views\Home\CanvasEngine.cshtml" />
+    <Content Include="Content\CanvasEngine\css\canvasengine.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -325,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\CanvasEngine\img\" />
     <Folder Include="Content\ChapterFour\img\" />
     <Folder Include="Content\ChapterTwo\img\" />
     <Folder Include="Models\" />

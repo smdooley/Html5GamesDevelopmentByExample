@@ -135,6 +135,12 @@ namespace Html5GamesDevelopmentByExample.UI.App_Start
                 "~/Content/chapternine/js/box2d/dynamics/joints/b2RevoluteJointDef.js"));
             bundles.Add(new ScriptBundle("~/bundles/chapternine/js").Include(
                 "~/Content/chapternine/js/html5games.box2dcargame.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/canvasengine/css").Include(
+                "~/Content/canvasengine/css/*.css"));
+            bundles.Add(new ScriptBundle("~/bundles/canvasengine/js").Include(
+                "~/Content/canvasengine/js/canvasengine-1.3.2.all.min.js",
+                "~/Content/canvasengine/js/main.js"));
         }
     }
 }
