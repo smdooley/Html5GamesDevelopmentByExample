@@ -22,10 +22,10 @@
 
 ### Topics
 
-Transform a playing card with animation
-Flip a playing card with new CSS3 properties
-Create the whole memory matching game
-And embed a custom web font to our game
+* Transform a playing card with animation
+* Flip a playing card with new CSS3 properties
+* Create the whole memory matching game
+* And embed a custom web font to our game
 
 ### Summary
 
@@ -72,7 +72,7 @@ And embed a custom web font to our game
 * Dividing the game into several layers by stacking several canvas elements
 * Mixing the CSS transition animation in a canvas-based game
 
-## Chapter 6 - Adding Sound Effects to your Games (Handling the audio event on playback completes)
+## Chapter 6 - Adding Sound Effects to your Games
 
 ### Topics
 
