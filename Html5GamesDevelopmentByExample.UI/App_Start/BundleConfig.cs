@@ -141,6 +141,86 @@ namespace Html5GamesDevelopmentByExample.UI.App_Start
             bundles.Add(new ScriptBundle("~/bundles/canvasengine/js").Include(
                 "~/Content/canvasengine/js/canvasengine-1.3.2.all.min.js",
                 "~/Content/canvasengine/js/main.js"));
+
+
+            bundles.Add(new StyleBundle("~/bundles/boxcar/css").Include(
+                "~/Content/boxcar/css/cargame.css"));
+            bundles.Add(new ScriptBundle("~/bundles/boxcar/protoclass").Include(
+                "~/Content/boxcar/js/protoclass.js"));
+            bundles.Add(new ScriptBundle("~/bundles/boxcar/box2d").Include(
+                "~/Content/boxcar/js/box2d/common/b2Settings.js",
+                "~/Content/boxcar/js/box2d/common/math/b2Vec2.js",
+                "~/Content/boxcar/js/box2d/common/math/b2Mat22.js",
+                "~/Content/boxcar/js/box2d/common/math/b2Math.js",
+                "~/Content/boxcar/js/box2d/collision/b2AABB.js",
+                "~/Content/boxcar/js/box2d/collision/b2Bound.js",
+                "~/Content/boxcar/js/box2d/collision/b2BoundValues.js",
+                "~/Content/boxcar/js/box2d/collision/b2Pair.js",
+                "~/Content/boxcar/js/box2d/collision/b2PairCallback.js",
+                "~/Content/boxcar/js/box2d/collision/b2BufferedPair.js",
+                "~/Content/boxcar/js/box2d/collision/b2PairManager.js",
+                "~/Content/boxcar/js/box2d/collision/b2BroadPhase.js",
+                "~/Content/boxcar/js/box2d/collision/b2Collision.js",
+                "~/Content/boxcar/js/box2d/collision/Features.js",
+                "~/Content/boxcar/js/box2d/collision/b2ContactID.js",
+                "~/Content/boxcar/js/box2d/collision/b2ContactPoint.js",
+                "~/Content/boxcar/js/box2d/collision/b2Distance.js",
+                "~/Content/boxcar/js/box2d/collision/b2Manifold.js",
+                "~/Content/boxcar/js/box2d/collision/b2OBB.js",
+                "~/Content/boxcar/js/box2d/collision/b2Proxy.js",
+                "~/Content/boxcar/js/box2d/collision/ClipVertex.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2Shape.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2ShapeDef.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2BoxDef.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2CircleDef.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2CircleShape.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2MassData.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2PolyDef.js",
+                "~/Content/boxcar/js/box2d/collision/shapes/b2PolyShape.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2Body.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2BodyDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2CollisionFilter.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2Island.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2TimeStep.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2ContactNode.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2Contact.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2ContactConstraint.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2ContactConstraintPoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2ContactRegister.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2ContactSolver.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2CircleContact.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2Conservative.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2NullContact.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2PolyAndCircleContact.js",
+                "~/Content/boxcar/js/box2d/dynamics/contacts/b2PolyContact.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2ContactManager.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2World.js",
+                "~/Content/boxcar/js/box2d/dynamics/b2WorldListener.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2JointNode.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2Joint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2JointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2DistanceJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2DistanceJointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2Jacobian.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2GearJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2GearJointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2MouseJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2MouseJointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2PrismaticJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2PrismaticJointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2PulleyJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2PulleyJointDef.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2RevoluteJoint.js",
+                "~/Content/boxcar/js/box2d/dynamics/joints/b2RevoluteJointDef.js"));
+            bundles.Add(new ScriptBundle("~/bundles/boxcar/js").Include(
+                "~/Content/boxcar/js/html5games.box2dcargame.js"));
+
+
+            bundles.Add(new StyleBundle("~/bundles/canvasengine/css").Include(
+                "~/Content/canvasengine/css/*.css"));
+            bundles.Add(new ScriptBundle("~/bundles/canvasengine/js").Include(
+                "~/Content/canvasengine/js/canvasengine-1.3.2.all.min.js",
+                "~/Content/canvasengine/js/main.js"));
         }
     }
 }

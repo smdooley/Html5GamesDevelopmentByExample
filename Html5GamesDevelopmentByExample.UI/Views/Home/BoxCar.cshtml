@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Box Car - Building a Physics Car Game with Box2D and Canvas";
+    ViewBag.Header = "Building a Physics Car Game with Box2D and Canvas";
+}
+
+@section styles {
+    @Styles.Render("~/bundles/boxcar/css")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/boxcar/protoclass", "~/bundles/boxcar/box2d", "~/bundles/boxcar/js")
+}
+
+<div id="asset">
+    <img id="flag" src="~/content/boxcar/img/flag.png" />
+    <img id="bus" src="~/content/boxcar/img/bus.png" />
+    <img id="wheel" src="~/content/boxcar/img/wheel.png" />
+</div>
+
+<section id="game-container">
+    <canvas id="game" width="1300" height="600" class="startscreen"></canvas>
+    <div id="fuel" class="progressbar">
+        <div class="fuel-value" style="width: 100%;"></div>
+    </div>
+    <div id="level"></div>
+</section>
